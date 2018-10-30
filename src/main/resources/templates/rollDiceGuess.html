@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Guessed</title>
+    <th:block th:include="fragments/head :: header('Guessed')"></th:block>
 </head>
 <body>
+<nav th:replace="fragments/navbar">
+    Navbar failed to load
+</nav>
 
 <!--When the user clicks on a link with a number from roll-dice.html.-->
 <!--It will pass the number to the {n}. from there is passed to this page.-->

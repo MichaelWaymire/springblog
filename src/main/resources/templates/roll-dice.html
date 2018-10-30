@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <th:block th:include="fragments/head :: header('Roll the Dice')"></th:block>
 </head>
 <body>
+<!--th:replace clears out the text inside the element and replaces it-->
+<!--with the fragment "navbar"-->
+<nav th:replace="fragments/navbar">
+    Navbar did not load.
+</nav>
 
 <h1>Luck of the Dice</h1>
 
