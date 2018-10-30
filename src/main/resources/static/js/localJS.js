@@ -13,7 +13,9 @@ function diceRoll() {
 		return "5";
 	}else{
 		rollTheDice == 6
-		return "7";
+		return "6";
 	}
 
 }
+
+diceRoll();

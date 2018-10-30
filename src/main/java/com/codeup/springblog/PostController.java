@@ -20,10 +20,10 @@ public class PostController {
     @GetMapping("/posts/{id}")
     @ResponseBody
     public String postId(@PathVariable long id) {
-        return "View an individual post" + id;
+        return "View an individual post: " + id;
     }
 
-    @GetMapping("/posts/cr/create")
+    @GetMapping("/posts/create")
     @ResponseBody
     public String createPost() {
         return "Create a new post";
