@@ -12,21 +12,23 @@
 <!--It will pass the number to the {n}. from there is passed to this page.-->
 <!--When it comes to this page it will display the users guest, and the number-->
 <!--generated.-->
-<h2> You guessed: <span th:text="${n}"></span> The Number was
-    <span th:text="${randomNumber}"></span>
-</h2>
+<div class="container m-5">
+    <h2> You rolled a: <span th:text="${n}"></span> The Number was:
+        <span th:text="${randomNumber}"></span>
+    </h2>
 
 
-<!--If the user guessed correctly this line will display.-->
-<h3 th:if="${n == randomNumber}">You guessed Correctly!</h3>
+    <!--If the user guessed correctly this line will display.-->
+    <h3 th:if="${n == randomNumber}">You guessed Correctly!</h3>
 
 
-<!--If the user did not guess correctly. This line will display-->
-<h3 th:if="${n != randomNumber}"><a href="/roll-dice">Try again</a> </h3>
+    <!--If the user did not guess correctly. This line will display-->
+    <h3 th:if="${n != randomNumber}"><a href="/roll-dice">Try again</a> </h3>
 
-
+</div>
 <footer th:replace="fragments/footer">
     Failed to load Footer
 </footer>
+
 </body>
 </html>

@@ -10,23 +10,27 @@
     Navbar did not load.
 </nav>
 
-<h1>Luck of the Dice</h1>
+<div class="container m-5">
+    <h1>Luck of the Dice</h1>
+    <br/>
 
-<h4>Pick a number!</h4>
+    <h4>Pick a number!</h4>
 
-<ul>
-    <!--When the link is clicked by the user. The getMapping will direct the user to the-->
-    <!--rollDiceGuess page, at the same time the number will be passed to the url-->
-    <!--so it will be picked up by the variable {n}-->
-    <li><a href="/roll-dice/1">1</a></li>
-    <li><a href="/roll-dice/2">2</a></li>
-    <li><a href="/roll-dice/3">3</a></li>
-    <li><a href="/roll-dice/4">4</a></li>
-    <li><a href="/roll-dice/5">5</a></li>
-    <li><a href="/roll-dice/6">6</a></li>
-</ul>
+    <ul>
+        <!--When the link is clicked by the user. The getMapping will direct the user to the-->
+        <!--rollDiceGuess page, at the same time the number will be passed to the url-->
+        <!--so it will be picked up by the variable {n}-->
+        <li><a href="/roll-dice/1">1</a></li>
+        <li><a href="/roll-dice/2">2</a></li>
+        <li><a href="/roll-dice/3">3</a></li>
+        <li><a href="/roll-dice/4">4</a></li>
+        <li><a href="/roll-dice/5">5</a></li>
+        <li><a href="/roll-dice/6">6</a></li>
+    </ul>
+</div>
 
-
+<!--th:replace clears out the text inside the element and replaces it-->
+<!--with the fragment "footer"-->
 <footer th:replace="fragments/footer">
     Failed to load Footer
 </footer>

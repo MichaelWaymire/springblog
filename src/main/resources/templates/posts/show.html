@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head :: header('Selected Post')"></th:block>
+</head>
+<nav th:replace="fragments/navbar">
+    Navbar failed to load
+</nav>
+<body>
+<h1>Selected Post</h1>
+
+<div>
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.body}"></p>
+</div>
+
+
+<footer th:replace="fragments/footer">
+    Failed to load Footer
+</footer>
+</body>
+</html>
