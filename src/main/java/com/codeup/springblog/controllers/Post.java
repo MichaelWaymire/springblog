@@ -9,7 +9,7 @@ public class Post {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     @Column(nullable = false, length = 150)
     private String title;
@@ -32,7 +32,7 @@ public class Post {
 
 
 
-    public Post(String title,String body,int id) {
+    public Post(String title,String body,long id) {
         this.title = title;
         this.body = body;
         this.id = id;
@@ -46,11 +46,11 @@ public class Post {
     public Post() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

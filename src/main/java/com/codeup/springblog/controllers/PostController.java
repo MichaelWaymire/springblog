@@ -47,7 +47,7 @@ public class PostController {
 //    Once the Post is created, this code allows it to be saved and viewed at once.
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
-        Post savePost = postService.save(post);
+        Post savePost = postService.createPost(post);
         return "redirect:/posts/" + savePost.getId();
     }
 
@@ -64,6 +64,11 @@ public class PostController {
         return "redirect:/posts/" + updatePost.getId();
     }
 
+   @GetMapping("/posts/{id}/delete")
+    public String deletePosting(@ModelAttribute Post post){
+        postService.deletePost(post);
+        return "redirect:/posts/";
+   }
 }
 
 
