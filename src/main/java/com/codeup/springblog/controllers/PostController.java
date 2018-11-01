@@ -6,12 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -41,18 +36,35 @@ public class PostController {
 //        vModle.addAttribute("post", new Post("My first post", "It's about things!"));
         return "/posts/show";
     }
-
+//    This allows the post to be created
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String createPost() {
-        return "Create a new post";
+    public String showPost(Model vModel) {
+        vModel.addAttribute("post", new Post());
+
+        return "posts/create";
     }
 
+//    Once the Post is created, this code allows it to be saved and viewed at once.
     @PostMapping("/posts/create")
-    public @ResponseBody
-    ResponseEntity<String> post() {
-        return new ResponseEntity<String>("POST Response", HttpStatus.OK);
+    public String createPost(@ModelAttribute Post post){
+        Post savePost = postService.save(post);
+        return "redirect:/posts/" + savePost.getId();
     }
 
+//    This will allow me to update the add selected.
+    @GetMapping("/posts/{id}/update")
+    public String showPostUpdate(@PathVariable int id, Model vModel) {
+        vModel.addAttribute("post", postService.findOne(id));
+        return "posts/update";
+    }
+
+    @PostMapping("/posts/{id}/update")
+    public String showPostUpdate(@ModelAttribute Post post){
+        Post updatePost = postService.update(post);
+        return "redirect:/posts/" + updatePost.getId();
+    }
 
 }
+
+
+
