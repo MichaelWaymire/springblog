@@ -15,6 +15,7 @@ public class PostController {
     private PostService postService;
 
     public PostController(PostService postService){
+
         this.postService = postService;
     }
 
@@ -29,7 +30,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
 //    This code is simaler to how a post would be pulled from a database
-    public String postId(@PathVariable int id, Model viewModel) {
+    public String postId(@PathVariable long id, Model viewModel) {
         viewModel.addAttribute("post", postService.findOne(id));
 
 //    public String postId(@PathVariable String id, Model vModle) {
@@ -47,26 +48,26 @@ public class PostController {
 //    Once the Post is created, this code allows it to be saved and viewed at once.
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
-        Post savePost = postService.createPost(post);
+        Post savePost = postService.updateOrSave(post);
         return "redirect:/posts/" + savePost.getId();
     }
 
 //    This will allow me to update the add selected.
     @GetMapping("/posts/{id}/update")
-    public String showPostUpdate(@PathVariable int id, Model vModel) {
+    public String showPostUpdate(@PathVariable long id, Model vModel) {
         vModel.addAttribute("post", postService.findOne(id));
         return "posts/update";
     }
 
     @PostMapping("/posts/{id}/update")
-    public String showPostUpdate(@ModelAttribute Post post){
-        Post updatePost = postService.update(post);
+    public String showUpdate(@ModelAttribute Post post){
+        Post updatePost = postService.updateOrSave(post);
         return "redirect:/posts/" + updatePost.getId();
     }
 
-   @GetMapping("/posts/{id}/delete")
-    public String deletePosting(@ModelAttribute Post post){
-        postService.deletePost(post);
+   @DeleteMapping("/posts/{id}/delete")
+    public String rmPost(@PathVariable long id){
+        postService.deletePost(id);
         return "redirect:/posts/";
    }
 }

@@ -28,19 +28,20 @@ public class PostService {
     }
 //    Allows us to find a single  post
     public Post findOne(long id) {
+
         return postRepo.findOne(id);
     }
 //    Allows us to update the add as needed
-    public Post update(Post post){
+    public Post updateOrSave(Post post){
         return postRepo.save(post);
     }
-    public Post createPost (Post post){
-        return postRepo.save(post);
 
-    }
-    public void deletePost(Post post) {
-        postRepo.delete(post);
+    //deletes selected post
+    public void deletePost(long id) { postRepo.delete(id); }
 
+    public List<Post> search(String term){
+//        return adsRepo.findAllByTitleContainsOrDescriptionContains(term, term);
+        return postRepo.searchByTitleOrDesc(term);
     }
 
 }

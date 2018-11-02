@@ -10,12 +10,21 @@
 </nav>
 
 <div class="container">
-<h1>Home Page</h1>
+    <h1>Home Page</h1>
+    <div class="mb-3"></div>
+    <div class="card mb-3" th:each="post : ${posts}">
 
-<div th:each="post : ${posts}">
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
-</div>
+        <div class="card-header">POSTS</div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h2 th:text="${post.title}"></h2>
+                </div>
+                <div class="card-text">
+                    <p th:text="${post.body}"></p>
+                </div>
+            </div>
+
+    </div>
 
 </div>
 

@@ -7,16 +7,32 @@
     Navbar failed to load
 </nav>
 <body>
+<div class="container m-5">
 <h1>Selected Post</h1>
+    <div class="mb-3"></div>
+    <div class="card">
+        <div class="card-header">
+            <h2>Blog Post</h2>
+        </div>
 
-<div>
-    <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
+        <div class="card-body mt-2">
+            <div class="card-title">
+                <h2 th:text="${post.title}"></h2>
+            </div>
+            <div class="card-text">
+                <p th:text="${post.body}"></p>
+                <a href="#" class="btn btn-primary">Edit Post</a>
+                <a href="#" class="btn btn-primary">Delete Post</a>
+            </div>
+        </div>
+    </div>
 </div>
-
 
 <footer th:replace="fragments/footer">
     Failed to load Footer
 </footer>
+ <script>
+
+ </script>
 </body>
 </html>
