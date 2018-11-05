@@ -1,9 +1,11 @@
 package com.codeup.springblog.controllers;
 
 ;
+import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.services.PostService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.codeup.springblog.services.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,17 @@ public class PostController {
 
     private PostService postService;
 
-    public PostController(PostService postService){
+    public PostController(PostService postService, UserRepo userRepo){
 
         this.postService = postService;
+        this.userRepo = userRepo;
     }
+
+
+    private UserRepo userRepo;
+
+
+//    User user = userRepo.findOne(1L);
 
 
     @GetMapping("/posts")
@@ -48,6 +57,7 @@ public class PostController {
 //    Once the Post is created, this code allows it to be saved and viewed at once.
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
+        post.setUser(userRepo.findOne(1L));
         Post savePost = postService.updateOrSave(post);
         return "redirect:/posts/" + savePost.getId();
     }

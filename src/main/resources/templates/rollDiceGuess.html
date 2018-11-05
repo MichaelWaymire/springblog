@@ -8,7 +8,7 @@
     Navbar failed to load
 </nav>
 
-<!--When the user clicks on a link with a number from roll-dice.html.-->
+<!--When the User clicks on a link with a number from roll-dice.html.-->
 <!--It will pass the number to the {n}. from there is passed to this page.-->
 <!--When it comes to this page it will display the users guest, and the number-->
 <!--generated.-->
@@ -18,11 +18,11 @@
     </h2>
 
 
-    <!--If the user guessed correctly this line will display.-->
+    <!--If the User guessed correctly this line will display.-->
     <h3 th:if="${n == randomNumber}">You guessed Correctly!</h3>
 
 
-    <!--If the user did not guess correctly. This line will display-->
+    <!--If the User did not guess correctly. This line will display-->
     <h3 th:if="${n != randomNumber}"><a href="/roll-dice">Try again</a> </h3>
 
 </div>

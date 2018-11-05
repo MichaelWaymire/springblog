@@ -1,6 +1,9 @@
-package com.codeup.springblog.controllers;
+package com.codeup.springblog.models;
+
+
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -17,6 +20,8 @@ public class Post {
     @Column(nullable = false, length = 500)
     private String body;
 
+
+
     /**
      *|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|
      *|This mapping is equivalent to the following MySQL table definition:|
@@ -31,6 +36,14 @@ public class Post {
      */
 
 
+//
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
+//
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "User")
+//    private List<Post> posts;
+
 
     public Post(String title,String body,long id) {
         this.title = title;
@@ -44,6 +57,14 @@ public class Post {
     }
 
     public Post() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
