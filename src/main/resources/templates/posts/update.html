@@ -12,37 +12,21 @@
 
 <form th:action="@{/posts/{id}/update(id=${post.id})}" th:method="post" th:object="${post}">
     Title:
-    <input th:field="*{title}" />
-    <br />
+    <input th:field="*{title}"/>
+    <br/>
     Description:
-    <input th:field="*{body}" />
-    <br />
-    <input  type="submit" />
-    <input type="hidden" id="postID" th:value="${post.id}"/>
-    <!--<button id ="rm-post">Delete</button>-->
-    <button th:value="${post.id}">Delete</button>
+    <input th:field="*{body}"/>
+    <br/>
+    <input type="submit"/>
 </form>
+<form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post" th:object="${post}">
+    <button type="submit">Delete</button>
+</form>
+
 
 
 <footer th:replace="fragments/footer">
     Failed to load Footer
 </footer>
-
-<script>
-    let rmbtn = document.querySelector("#rm-post");
-    let postId = document.querySelector("#postID").value;
-
-    rmbtn.addEventListener('click', function(e){
-	    e.preventDefault();
-	    let res = confirm("Are you sure?");
-	    if(res){
-		    fetch(`/posts/${postId}/delete`, {
-			    method: "POST"
-		    }).then( res => res.json()).then( () => location.href = "/posts");
-	    }
-    });
-
-
-</script>
 </body>
 </html>

@@ -17,11 +17,14 @@
         <div class="card-header">POSTS</div>
             <div class="card-body">
                 <div class="card-title">
-                    <h2 th:text="${post.title}"></h2>
+                    <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
                 </div>
                 <div class="card-text">
                     <p th:text="${post.body}"></p>
                 </div>
+                <!--<form th:action="@{/posts/{id}}" th:method="POST" th:object="${post.id}">-->
+                    <!--<button type="submit">Show Post</button>-->
+                <!--</form>-->
             </div>
 
     </div>
