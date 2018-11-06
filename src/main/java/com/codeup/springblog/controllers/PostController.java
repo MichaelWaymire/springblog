@@ -6,6 +6,7 @@ import com.codeup.springblog.models.User;
 import com.codeup.springblog.services.PostService;
 import com.codeup.springblog.services.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ public class PostController {
 
     private PostService postService;
 
+    private UserRepo userRepo;
+
     public PostController(PostService postService, UserRepo userRepo){
 
         this.postService = postService;
@@ -23,7 +26,7 @@ public class PostController {
     }
 
 
-    private UserRepo userRepo;
+
 
 
 //    User user = userRepo.findOne(1L);
@@ -57,7 +60,8 @@ public class PostController {
 //    Once the Post is created, this code allows it to be saved and viewed at once.
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
-        post.setUser(userRepo.findOne(1L));
+        User loggedIn = ( User ) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(userRepo.findOne(loggedIn.getId()));
         Post savePost = postService.updateOrSave(post);
         return "redirect:/posts/" + savePost.getId();
     }
@@ -70,7 +74,9 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/update")
-    public String showUpdate(@ModelAttribute Post post){
+    public String showUpdate(@PathVariable long id, @ModelAttribute Post post){
+        User loggedInUser = ( User ) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(userRepo.findByUsername(loggedInUser.getUsername()));
         Post updatePost = postService.updateOrSave(post);
         return "redirect:/posts/" + updatePost.getId();
     }

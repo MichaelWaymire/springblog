@@ -42,11 +42,11 @@ public class UserController {
         User loggedInUser = ( User ) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (!user.getUsername().equals(loggedInUser.getUsername())) {
-            return "redirect:/ads";
+            return "redirect:/posts";
         }
 
         model.addAttribute("user",user);
-        return "redirect:/ads/create";
+        return "redirect:/posts/create";
     }
 }
 

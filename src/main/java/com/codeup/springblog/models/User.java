@@ -11,17 +11,15 @@ public class User {
     @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Post> posts;
 
     public User() {
     }

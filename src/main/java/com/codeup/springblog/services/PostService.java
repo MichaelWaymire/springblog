@@ -38,9 +38,6 @@ public class PostService {
     //deletes selected post
     public void deletePost(long id) { postRepo.delete(id); }
 
-//    public List<Post> search(String term){
-////        return adsRepo.findAllByTitleContainsOrDescriptionContains(term, term);
-//        return postRepo.searchByTitleOrDesc(term);
     }
 
 
